@@ -1,0 +1,27 @@
+{
+  "name": "bertoost/elasticemail-swiftmailer",
+  "description": "The SwiftMailer transport integration for Elastic Email.",
+  "keywords": [
+    "elastic email",
+    "mailer",
+    "transport"
+  ],
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Bert Oost",
+      "email": "hello@bertoost.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2 || ^8.0 || ^8.1",
+    "elasticemail/elasticemail-php": "^4.0.20",
+    "swiftmailer/swiftmailer": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "bertoost\\ElasticEmail\\SwiftMailer\\": "src/"
+    }
+  }
+}
