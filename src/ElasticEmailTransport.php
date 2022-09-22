@@ -116,6 +116,11 @@ class ElasticEmailTransport implements Swift_Transport
             $from[] = $this->formatAddress($fromEmail, $fromName);
         }
 
+        $replyTo = [];
+        foreach ($email->getReplyTo() as $replyEmail => $replyName) {
+            $replyTo[] = $this->formatAddress($replyEmail, $replyName);
+        }
+
         return new EmailTransactionalMessageData([
             'recipients' => $this->buildRecipients($email),
             'content' => new EmailContent([
@@ -124,7 +129,7 @@ class ElasticEmailTransport implements Swift_Transport
                 'subject' => $email->getSubject(),
                 'attachments' => $this->buildAttachments($email),
                 'headers' => $this->buildHeaders($email),
-                'reply_to' => $email->getReplyTo(),
+                'reply_to' => !empty($replyTo) ? implode(', ', $replyTo) : null,
             ]),
         ]);
     }
