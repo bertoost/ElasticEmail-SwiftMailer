@@ -117,8 +117,10 @@ class ElasticEmailTransport implements Swift_Transport
         }
 
         $replyTo = [];
-        foreach ($email->getReplyTo() as $replyEmail => $replyName) {
-            $replyTo[] = $this->formatAddress($replyEmail, $replyName);
+        if (null !== ($addresses = $email->getReplyTo())) {
+            foreach ($addresses as $replyEmail => $replyName) {
+                $replyTo[] = $this->formatAddress($replyEmail, $replyName);
+            }
         }
 
         return new EmailTransactionalMessageData([
